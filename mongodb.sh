@@ -52,7 +52,7 @@ VALIDATE $? "restart mongodb"
 
 End_time=$(date +%s)
 
-Total_execution_time=$(($Start_time - $End_time ))
+Total_execution_time=$(($End_time - $Start_time ))
  
  echo $Total_execution_time
 
