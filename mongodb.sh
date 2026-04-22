@@ -20,6 +20,6 @@ then
    echo -e "$R please log user as root user::  $W" | tee -a $LOG_FILE
    exit 1
 else 
-    echo -e "$G looged as a root user:: $w " | tee -a $LOG_FILE
+    echo -e "$G looged as a root user:: $W " | tee -a $LOG_FILE
 fi
 
