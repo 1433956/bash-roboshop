@@ -42,7 +42,7 @@ VALIDATE $? "disabling the nodejs"
 dnf module enable nodejs:20 -y
 VALIDATE $? "enable  the nodejs version of 20"
 
-dnf list installed nodejs
+dnf  installed list nodejs
 if [ $? -ne 0 ]
 then 
    dnf install nodejs -y
