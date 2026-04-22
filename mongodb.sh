@@ -6,8 +6,8 @@ mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$LOG_FILENAME.log"
  echo $LOG_FILE
-G="\e[31m"
-R="\e[32m"
+R="\e[31m"
+G="\e[32m"
 Y="\e[33m"
 W="\e[0m"
 
