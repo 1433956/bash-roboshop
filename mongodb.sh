@@ -1,7 +1,7 @@
 #!/bin/bash
 
  Start_time=$(date +%s)
- echo $Start_time
+ 
 LOG_FOLDER="/var/log/roboshop-logs"
 mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
@@ -54,4 +54,5 @@ End_time=$(date +%s)
 
 Total_execution_time=$(($Start_time - $End_time ))
  
+ echo $Total_execution_time
 
