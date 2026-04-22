@@ -26,14 +26,14 @@ fi
 VALIDATE(){
    if [ $1 -ne 0 ]
    then 
-       echo -e "$G $2 is Success:: $W" | tee -a $LOG_FILE
+       echo -e "$R $2 is Success:: $W" | tee -a $LOG_FILE
    else
-      echo -e "$R $2 is Failure:: $W" | tee -a $LOG_FILE
+      echo -e "$G $2 is Failure:: $W" | tee -a $LOG_FILE
    fi
 
 }
 
-CP /mongo.repo /etc/yum.repos.d/mongo.repo
+cp  mongo.repo /etc/yum.repos.d/mongo.repo
 
 dnf install mongodb-org -y
 VALIDATE $? "installing mongodb"
