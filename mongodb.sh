@@ -1,11 +1,12 @@
 #!/bin/bash
 
-
+ Start_time=$(date +%s)
+ echo $Start_time
 LOG_FOLDER="/var/log/roboshop-logs"
 mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$LOG_FILENAME.log"
- echo $LOG_FILE
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -49,6 +50,8 @@ VALIDATE $? "channging mongod conf "
 systemctl restart mongod &>> $LOG_FILE
 VALIDATE $? "restart mongodb"
 
+End_time=$(date +%s)
 
+Total_execution_time=$(($Start_time - $End_time ))
  
 
