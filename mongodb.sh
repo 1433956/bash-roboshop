@@ -54,5 +54,5 @@ End_time=$(date +%s)
 
 Total_execution_time=$(($End_time - $Start_time ))
  
- echo $Total_execution_time
+ echo -e "$G total execution::$W $Total_execution_time"
 
