@@ -17,35 +17,35 @@ USERID=$(id -u)
 
 if [ $? -ne 0 ]
 then
-   echo -e "$R please log user as root user::  $W" | tee -a $LOG_FILE
+   echo -e "$R please log user as root user::  $W" &>> $LOG_FILE
    exit 1
 else 
-    echo -e "$G logged as a root user:: $W " | tee -a $LOG_FILE
+    echo -e "$G logged as a root user:: $W " &>> $LOG_FILE
 fi
 
 VALIDATE(){
    if [ $1 -ne 0 ]
    then 
-       echo -e "$R $2 is Failure:: $W" | tee -a $LOG_FILE
+       echo -e "$R $2 is Failure:: $W" &>> $LOG_FILE
    else
-      echo -e "$G $2 is Success:: $W" | tee -a $LOG_FILE
+      echo -e "$G $2 is Success:: $W" &>> $LOG_FILE
    fi
 
 }
 
 cp  mongo.repo /etc/yum.repos.d/mongo.repo
 
-dnf install mongodb-org -y
+dnf install mongodb-org -y &>> $LOG_FILE
 VALIDATE $? "installing mongodb"
-systemctl enable mongod
+systemctl enable mongod &>> $LOG_FILE
 VALIDATE $? "enable  mongodb"
-systemctl start mongod
+systemctl start mongod &>> $LOG_FILE
 VALIDATE $? "start mongodb"
 
-sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf
+sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf 
 VALIDATE $? "channging mongod conf "
 
-systemctl restart mongod
+systemctl restart mongod &>> $LOG_FILE
 VALIDATE $? "restart mongodb"
 
 
