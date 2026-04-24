@@ -119,6 +119,8 @@ else
      echo -e "Data is already loaded ... $Y SKIPPING $N"
 fi
 End_time=$(date +%s)
+systemctl restart catalogue &>> $LOG_FILE
+VALIDATE $? "restart  catalogue "
 
 Total_execution_time=$(($End_time - $Start_time))
 
