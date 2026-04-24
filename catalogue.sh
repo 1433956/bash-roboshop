@@ -11,6 +11,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 W="\e[0m"
+current_directory=$PWD
 
 USERID=$(id -u)
 
@@ -58,7 +59,28 @@ VALIDATE $? "installing  nodejs"
 
 user=$(id roboshop)
 
-if [ $?  ]
+if [ $? -eq 0 ]
+then 
+   echo -e "$Y system user is created skiping user creation::$user $W" | tee -a $LOG_FILE
+   exit 1
+else
+   echo -e "$G system user not created, Creting system user:: $user $W" | tee -a $LOG_FILE
+   
+   useradd --system --home /app --shell /sbin/nologin  --comment "creating system user" roboshop
+fi
+
+mkdir -p /app
+
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+ VALIDATE $? "downloading the code "
+
+cd /app 
+
+ unzip /tmp/catalogue.zip
+
+ $current_directory/app
+echo "$current_directory"
+
 
 
 
