@@ -44,7 +44,7 @@ dnf module enable nodejs:20 -y &>> $LOG_FILE
 VALIDATE $? "enable  the nodejs version of 20"
 
 dnf  installed list nodejs &>> $LOG_FILE
-if [ $? -ne 0 ]
+if [ $? -eq 0 ]
 then 
    dnf install nodejs -y
    echo -e "$G not installed in machine installing nodejs $W" &>> $LOG_FILE
