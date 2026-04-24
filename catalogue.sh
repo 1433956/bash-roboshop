@@ -87,7 +87,7 @@ cd /app
  VALIDATE $? "npm installing::"
 
 
-cp $current_directory /catalogue.service /etc/systemd/system/catalogue.service &>> $LOG_FILE
+cp $current_directory/catalogue.service /etc/systemd/system/catalogue.service &>> $LOG_FILE
  VALIDATE $? "copying  catalogue service" 
 
  systemctl daemon-reload &>> $LOG_FILE
