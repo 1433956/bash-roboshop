@@ -10,7 +10,7 @@ mkdir -p $LOG_FOLDER
 LOG_FILENAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER/$LOG_FILENAME.log"
 
-
+current_directory=$PWD
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]
@@ -38,16 +38,37 @@ VALIDATE $? "disabling nginx module"
 dnf module enable nginx:1.24 -y &>> $LOG_FILE
 VALIDATE $? "enable nginx module"
 
-dnf list installed nginx 
 
-if [ $? -ne 0 ]
-then 
-    echo -e "$R nginx is not installed $W" &>> $LOG_FILE
-    dnf install nginx -y &>> $LOG_FILE
-else  
-    echo -e "$G nginx is installed:: $Y skipping :: $W" &>> $LOG_FILE
-    exit 1
-fi
+dnf install nginx -y &>> $LOG_FILE
+
+VALIDATE $? "install nginx "
+
+systemctl enable nginx &>> $LOG_FILE
+VALIDATE $? "enable nginx "
+systemctl start nginx  &>> $LOG_FILE
+VALIDATE $? "start nginx "
+
+rm -rf /usr/share/nginx/html/* &>> $LOG_FILE
+
+VALIDATE $? "removing default content "
+
+
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>> $LOG_FILE
+
+VALIDATE $? "downloading code "
+
+cd /usr/share/nginx/html 
+
+unzip /tmp/frontend.zip &>> $LOG_FILE
+
+VALIDATE $? "unzipping code "
+cp $current_directory/nginx.conf /etc/nginx/nginx.conf
+
+systemctl restart nginx &>> $LOG_FILE
+
+VALIDATE $? "restart nginx "
+
+
 
 
    
