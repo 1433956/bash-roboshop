@@ -120,7 +120,7 @@ else
 fi
 End_time=$(date +%s)
 
-Total_execution_time= $($(Start_time - $End_time))
+Total_execution_time= $(($Start_time - $End_time))
 
 echo -e " $G Total_execution_time:: $Total_execution_time:: $W"
  
