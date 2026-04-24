@@ -27,22 +27,22 @@ fi
 VALIDATE(){
    if [ $1 -ne 0 ]
    then 
-       echo -e "$R $2 is Failure:: $W" &>> $LOG_FILE
+       echo -e "$R $2 is Failure:: $W" | tee -a $LOG_FILE
        exit 1
    else
-      echo -e "$G $2 is Success:: $W" &>> $LOG_FILE
+      echo -e "$G $2 is Success:: $W" | tee -a $LOG_FILE
    fi
 
 }
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y  &>> $LOG_FILE
 
 VALIDATE $? "disabling the nodejs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>> $LOG_FILE
 VALIDATE $? "enable  the nodejs version of 20"
 
-dnf  installed list nodejs
+dnf  installed list nodejs &>> $LOG_FILE
 if [ $? -ne 0 ]
 then 
    dnf install nodejs -y
@@ -51,9 +51,14 @@ else
    echo -e "$Y installed in machine Skipping installing nodejs $W" &>> $LOG_FILE
    exit 1
 fi
-   
-    
+     
 VALIDATE $? "installing  nodejs"
+
+#create system user 
+
+user=$(id roboshop)
+
+if [ $?  ]
 
 
 
