@@ -62,7 +62,7 @@ user=$(id roboshop)
 if [ $? -eq 0 ]
 then 
    echo -e "$Y system user is created skiping user creation::$user $W" | tee -a $LOG_FILE
-   exit 1
+   
 else
    echo -e "$G system user not created, Creting system user:: $user $W" | tee -a $LOG_FILE
    
