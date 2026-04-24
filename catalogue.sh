@@ -78,7 +78,8 @@ cd /app
 
  unzip /tmp/catalogue.zip
 
- $current_directory/app
+ cd $current_directory/app
+ 
 echo "$current_directory"
 
 
