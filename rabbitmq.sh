@@ -59,7 +59,7 @@ echo -e "$G please enter psswd for rabbitmq::"
 read -s rabbitmqpwd
 rabbitmqctl add_user roboshop $rabbitmqpwd &>> $LOG_FILE
 VALIDATE $? "add user to  rabbitmq-server"
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" $LOG_FILE
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"  &>> $LOG_FILE
 VALIDATE $? "set_permissions to  rabbitmq-server"
 
 End_time=$(date +%s)
