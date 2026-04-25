@@ -106,7 +106,7 @@ then
    echo -e "$G not installed in machine installing mysql $W" &>> $LOG_FILE
 else
    echo -e "$Y installed in machine Skipping installing mysql $W" &>> $LOG_FILE
-   
+   VALIDATE $? "alreday insatlled, Skipping installing mysql is "
    
 fi 
 
@@ -120,11 +120,13 @@ then
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql  &>> $LOG_FILE
     mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql &>> $LOG_FILE
+    VALIDATE $? "data loaded is "
 else
    echo $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
+   VALIDATE $? "data loadeding skipped "
 fi
 
-VALIDATE $? "data loaded is "
+
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
 
