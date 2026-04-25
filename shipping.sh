@@ -124,6 +124,7 @@ else
    echo $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
 fi
 
+VALIDATE $? "data loaded is "
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
 
