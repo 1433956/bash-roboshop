@@ -53,4 +53,6 @@ VALIDATE $? "start mysql "  &>> $LOG_FILE
 
 echo -e "$G pleae enter mysql root psswd::$W"
 read -s rootpasswd
+echo -e "$G  mysql root psswd:: $rootpasswd $W"
+
 mysql_secure_installation --set-root-pass $rootpasswd
