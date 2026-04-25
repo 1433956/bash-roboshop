@@ -19,7 +19,8 @@ else
    echo -e "$R please log user as a root user:: $W" &>> $LOG_FILE
    exit 1
 fi
- VALIDATE $? "user logged as root is  " &>> $LOG_FILE
+ VALIDATE $? "user logged as root is "  &>> $LOG_FILE
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
@@ -30,6 +31,10 @@ VALIDATE(){
     fi
 
 }
+
+dnf module disable redis -y &>> $LOG_FILE
+
+VALIDATE $? "disable  latest redis version "
 
 
 
