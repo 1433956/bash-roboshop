@@ -50,7 +50,7 @@ else
    echo -e "$G redis  installed in machine :: $Y skipping::  $W" &>> $LOG_FILE
    
 fi
-VALIDATE $? "install redis  " &>> $LOG_FILE
+
 
 #cp /redis.conf /etc/redis/redis.conf
 
