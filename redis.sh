@@ -19,7 +19,7 @@ else
    echo -e "$R please log user as a root user:: $W" &>> $LOG_FILE
    exit 1
 fi
-
+ VALIDATE $? "user logged as root is  "
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
