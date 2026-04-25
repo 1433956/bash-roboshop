@@ -40,7 +40,7 @@ dnf module enable redis:7 -y &>> $LOG_FILE
 
 VALIDATE $? "enable  redis version of 7 "
 
-dnf list --installed redis
+dnf list --installed redis &>> $LOG_FILE
 
 if [ $? -eq 1 ]
 then
