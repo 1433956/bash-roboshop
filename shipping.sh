@@ -100,7 +100,7 @@ echo -e "$G pleae enter mysql root psswd::$W"
 read -s rootpasswd
 
 dnf list --installed mysql &>> $LOG_FILE
-if [ $? -ne 0 ]
+if [ $? -eq 1 ]
 then 
    dnf install mysql -y &>> $LOG_FILEE
    echo -e "$G not installed in machine installing mysql $W" &>> $LOG_FILE
@@ -114,11 +114,11 @@ VALIDATE $? "install mysql client in shipping client "
 
 
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/schema.sql
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/app-user.sql 
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql 
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/master-data.sql
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql
 
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
