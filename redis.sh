@@ -16,7 +16,7 @@ if [ $USERID -eq 0 ]
 then
    echo -e "$G user Logged as root user:: $W" &>> $LOG_FILE
 else
-   echo -e "$R user Logged as root user:: $W" &>> $LOG_FILE
+   echo -e "$R please log user as a root user:: $W" &>> $LOG_FILE
    exit 1
 fi
 
