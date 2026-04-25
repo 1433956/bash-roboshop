@@ -34,10 +34,10 @@ VALIDATE(){
    fi
 
 }
-rm -rf /etc/yum.repos.d/* &>> $LOG_FILE
-VALIDATE $? "removing  rabbitmq repo"
+
 cp  rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>> $LOG_FILE
 VALIDATE $? "copy  rabbitmq repo"
+
 dnf list --installed rabbitmq-server &>> $LOG_FILE
 
 if [ $? -ne 0 ]
