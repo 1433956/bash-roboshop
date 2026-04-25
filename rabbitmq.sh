@@ -37,6 +37,8 @@ VALIDATE(){
 
 cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>> $LOG_FILE
 VALIDATE $? "copy  rabbitmq repo"
+echo -e "$G please enter psswd for rabbitmq::"
+read -s rabbitmqpwd
 
 dnf list --installed rabbitmq-server &>> $LOG_FILE
 
