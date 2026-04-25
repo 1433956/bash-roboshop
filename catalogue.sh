@@ -50,7 +50,7 @@ then
    echo -e "$G not installed in machine installing nodejs $W" &>> $LOG_FILE
 else
    echo -e "$Y installed in machine Skipping installing nodejs $W" &>> $LOG_FILE
-   exit 1
+   
 fi
      
 VALIDATE $? "installing  nodejs"
