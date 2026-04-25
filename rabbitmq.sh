@@ -38,8 +38,18 @@ rm -rf /etc/yum.repos.d/* &>> $LOG_FILE
 VALIDATE $? "removing  rabbitmq repo"
 cp  rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>> $LOG_FILE
 VALIDATE $? "copy  rabbitmq repo"
-dnf install rabbitmq-server -y &>> $LOG_FILE
-VALIDATE $? "installing rabbitmq"
+dnf list --installed rabbitmq-server &>> $LOG_FILE
+
+if [ $? -ne 0 ]
+then
+   echo -e "$R rabbitmq-server not installed going to install  $W" &>> $LOG_FILE 
+   dnf install rabbitmq-server -y &>> $LOG_FILE
+   VALIDATE $? "installing"
+else
+   echo -e "$G rabbitmq-server  installed in machine :: $Y skipping::  $W" &>> $LOG_FILE
+   VALIDATE $? "Not installing"
+fi
+
 systemctl enable rabbitmq-server &>> $LOG_FILE
 VALIDATE $? "enable rabbitmq-server"
 systemctl start rabbitmq-server &>> $LOG_FILE
