@@ -67,7 +67,7 @@ Total_execution_time=$(($end_time - $Start_time))
 
 
 
-cho -e "$G Total_execution_time ::$Total_execution_time $Y"
+echo -e "$G Total_execution_time :: $Total_execution_time $Y"
   
 
 
