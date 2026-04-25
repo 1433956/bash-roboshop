@@ -67,6 +67,7 @@ else
    echo -e "$G system user not created, Creting system user:: $user $W" | tee -a $LOG_FILE
    
    useradd --system --home /app --shell /sbin/nologin  --comment "creating system user" roboshop
+   exit 1
 fi
 
 mkdir -p /app
@@ -79,12 +80,12 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
  VALIDATE $? "downloading the code "
 
 cd /app 
- unzip /tmp/catalogue.zip  &>>$LOG_FILE
- VALIDATE $? "unziping the app folder"
+unzip /tmp/catalogue.zip  &>>$LOG_FILE
+VALIDATE $? "unziping the app folder"
 
- npm install &>> $LOG_FILE
+npm install &>> $LOG_FILE
 
- VALIDATE $? "npm installing::"
+VALIDATE $? "npm installing::"
 
 
 cp $current_directory/catalogue.service /etc/systemd/system/catalogue.service &>> $LOG_FILE
