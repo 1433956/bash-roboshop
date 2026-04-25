@@ -114,11 +114,11 @@ VALIDATE $? "install mysql client in shipping client "
 
 
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/schema.sql
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql 
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/app-user.sql 
 
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd </app/db/master-data.sql
 
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
