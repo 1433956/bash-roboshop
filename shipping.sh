@@ -110,15 +110,19 @@ else
    
 fi 
 
-VALIDATE $? "install mysql client in shipping client "
+VALIDATE $? "install mysql client in shipping client " &>> $LOG_FILE
 
+mysql -h mysql.devops26.sbs -uroot -p$rootpasswd -e 'use cities'  $LOG_FILE
 
-
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql
-
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql 
-
-mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql
+if [ $? -ne 0 ]
+then
+    echo $R data is not loaded.. $Y Data loading $W" &>> $LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/schema.sql &>> $LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/app-user.sql  &>> $LOG_FILE
+    mysql -h mysql.devops26.sbs -uroot -p$rootpasswd < /app/db/master-data.sql &>> $LOG_FILE
+else
+   echo $G data is  loaded.. $Y Data loading is skipped:: $W" &>> $LOG_FILE
+fi
 
 systemctl restart shipping
 VALIDATE $? "restart shipping service  "
