@@ -42,7 +42,7 @@ VALIDATE $? "enable  redis version of 7 "
 
 dnf list --installed redis &>> $LOG_FILE
 
-if [ $? -eq 1 ]
+if [ $? -ne 0 ]
 then
    echo -e "$R redis not installed going to install  $W" &>> $LOG_FILE 
    dnf install redis -y &>> $LOG_FILE
@@ -50,7 +50,7 @@ else
    echo -e "$G redis  installed in machine :: $Y skipping::  $W" &>> $LOG_FILE
    
 fi
-
+VALIDATE $? "install  redis version of 7 "
 
 #cp /redis.conf /etc/redis/redis.conf
 
