@@ -52,5 +52,5 @@ systemctl start mysqld  &>> $LOG_FILE
 VALIDATE $? "start mysql "  &>> $LOG_FILE
 
 echo -e "$G pleae enter mysql root psswd::$W"
-Read -s rootpasswd
+read -s rootpasswd
 mysql_secure_installation --set-root-pass $rootpasswd
