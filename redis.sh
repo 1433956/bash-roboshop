@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ Start_time=$(date +%s)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -56,15 +56,18 @@ sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc
 
 VALIDATE $? "redis conf change"
 
-systemctl enable redis
+systemctl enable redis &>> $LOG_FILE
 VALIDATE $? "enable redis " 
-systemctl start redis 
+systemctl start redis  &>> $LOG_FILE
 VALIDATE $? "start redis " 
 
+end_time=$(date +%s)
+
+Total_execution_time=$(($end_time - $Start_time))
 
 
 
-
+cho -e "$G Total_execution_time ::$Total_execution_time $Y"
   
 
 
