@@ -102,7 +102,7 @@ read -s rootpasswd
 dnf list --installed mysql &>> $LOG_FILE
 if [ $? -eq 1 ]
 then 
-   dnf install mysql -y &>> $LOG_FILEE
+   dnf install mysql -y &>> $LOG_FILE
    echo -e "$G not installed in machine installing mysql $W" &>> $LOG_FILE
 else
    echo -e "$Y installed in machine Skipping installing mysql $W" &>> $LOG_FILE
