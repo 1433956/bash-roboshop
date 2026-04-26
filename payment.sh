@@ -36,7 +36,7 @@ VALIDATE(){
 }
 
 
-dnf list --installed python3 &>> $LOG_FILE
+dnf list --installed python3 gcc python3-devel &>> $LOG_FILE
 if [ $? -ne 0 ]
 then 
    dnf install python3 gcc python3-devel -y &>> $LOG_FILE
