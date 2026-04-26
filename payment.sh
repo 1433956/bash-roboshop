@@ -68,12 +68,14 @@ mkdir -p /app &>>$LOG_FILE
 
 VALIDATE $? "creating directory for app"
 
-rm -rf /app/* &>>$LOG_FILE
+
 
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip  &>>$LOG_FILE
  VALIDATE $? "downloading the code "
 
 cd /app 
+rm -rf /app/* &>>$LOG_FILE
+VALIDATE $? "removing app folder"
 unzip /tmp/payment.zip  &>>$LOG_FILE
 VALIDATE $? "unziping the app folder"
 
